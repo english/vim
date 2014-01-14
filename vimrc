@@ -22,6 +22,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'rking/ag.vim'
 Bundle 'bronson/vim-trailing-whitespace'
+Bundle 'Valloric/YouCompleteMe'
 
 set number
 set expandtab
