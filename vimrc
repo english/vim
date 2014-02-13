@@ -47,7 +47,7 @@ au Syntax * RainbowParenthesesLoadBraces
 
 set t_Co=256
 set background=light
-colorscheme solarized
+colorscheme default
 
 set splitbelow
 set nowrap
