@@ -197,6 +197,7 @@ command! Figwheel :Piggieback (do (require 'figwheel-sidecar.repl-api) (figwheel
 " DBEXT plugin
 let g:dbext_default_profile_ps = 'type=PGSQL:dbname=gc_paysvc_live'
 let g:dbext_default_profile_gc = 'type=PGSQL:dbname=gc_live'
+let g:dbext_default_profile_data = 'type=PGSQL:dbname=gc_global'
 let g:dbext_default_profile = 'ps'
 "
 
