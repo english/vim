@@ -23,7 +23,6 @@ Plugin 'guns/vim-sexp'
 Plugin 'guns/vim-slamhound'
 Plugin 'hmarr/vim-gemfile'
 Plugin 'honza/vim-snippets'
-Plugin 'jgdavey/tslime.vim'
 Plugin 'junegunn/goyo.vim'
 Plugin 'junkblocker/patchreview-vim'
 Plugin 'kana/vim-textobj-user'
@@ -199,7 +198,6 @@ let g:dbext_default_profile_ps = 'type=PGSQL:dbname=gc_paysvc_live'
 let g:dbext_default_profile_gc = 'type=PGSQL:dbname=gc_live'
 let g:dbext_default_profile_data = 'type=PGSQL:dbname=gc_global'
 let g:dbext_default_profile = 'ps'
-"
 
 " experiment with speeding up vim with big ruby files
 " https://github.com/vim/vim/issues/282
@@ -223,10 +221,3 @@ if executable('ag')
 endif
 
 nnoremap <Leader>* :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-let g:tslime_always_current_session= 1
-let g:tslime_always_current_window= 1
-
-vmap <Leader>x <Plug>SendSelectionToTmux
-nmap <Leader>x <Plug>NormalModeSendToTmux
-nmap <Leader>v <Plug>SetTmuxVars
