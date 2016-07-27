@@ -10,6 +10,8 @@ Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'ap/vim-css-color'
+Plugin 'benmills/vimux'
+Plugin 'danchoi/ri.vim'
 Plugin 'dbext.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'editorconfig/editorconfig-vim'
@@ -69,6 +71,8 @@ Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-vinegar'
+Plugin 'tyru/open-browser-github.vim'
+Plugin 'tyru/open-browser.vim'
 Plugin 'venantius/vim-cljfmt'
 Plugin 'vim-ruby/vim-ruby'
 
@@ -128,6 +132,8 @@ colorscheme solarized
 let g:scratch_no_mappings = 1
 
 au BufRead,BufNewFile *.md set filetype=markdown
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'sql', 'ruby']
+
 au BufRead,BufNewFile *.pde set filetype=java
 " au BufNewFile,BufRead *.mustache,*.hogan,*.hulk,*.hjs,*.hbs set filetype=html.mustache syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
 au BufRead,BufNewFile *.cljx set filetype=clojure
@@ -179,17 +185,6 @@ endfun
 
 autocmd BufNewFile,BufRead * call s:DetectBabelNode()
 
-" See http://vimcasts.org/episodes/project-wide-find-and-replace/
-command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
-function! QuickfixFilenames()
-  " Building a hash ensures we get each buffer only once
-  let buffer_numbers = {}
-  for quickfix_item in getqflist()
-    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
-  endfor
-  return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
-endfunction
-
 " connect to figwheel browser repl
 command! Figwheel :Piggieback (do (require 'figwheel-sidecar.repl-api) (figwheel-sidecar.repl-api/cljs-repl))
 
@@ -197,6 +192,7 @@ command! Figwheel :Piggieback (do (require 'figwheel-sidecar.repl-api) (figwheel
 let g:dbext_default_profile_ps = 'type=PGSQL:dbname=gc_paysvc_live'
 let g:dbext_default_profile_gc = 'type=PGSQL:dbname=gc_live'
 let g:dbext_default_profile_data = 'type=PGSQL:dbname=gc_global'
+let g:dbext_default_profile_local = 'type=PGSQL:dbname=jamieenglish'
 let g:dbext_default_profile = 'ps'
 
 " experiment with speeding up vim with big ruby files
@@ -221,3 +217,20 @@ if executable('ag')
 endif
 
 nnoremap <Leader>* :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" Vimux config
+function! VimuxSlime()
+  call VimuxSendText(@v)
+  call VimuxSendKeys("Enter")
+endfunction
+
+" If text is selected, save it in the v buffer and send that buffer it to tmux
+vmap <Leader>vs "vy :call VimuxSlime()<CR>
+
+" Select current paragraph and send it to tmux
+nmap <Leader>vs vip<Leader>vs<CR>
+
+" Open vimux runner. Will use existing Tmux pane if one is already open
+nmap <Leader>vo :call VimuxOpenRunner()<CR>
+
+autocmd BufNewFile,BufRead *.scm nmap cpp vaf<Leader>vs<CR>
