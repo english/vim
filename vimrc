@@ -67,8 +67,9 @@ set smartcase
 set laststatus=2
 set showtabline=2
 set guioptions-=e
-set textwidth=90
-set colorcolumn=90
+set textwidth=80
+set colorcolumn=+1
+highlight ColorColumn ctermbg=lightgrey
 set splitbelow
 set splitright
 set hlsearch
