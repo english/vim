@@ -95,10 +95,6 @@ set undofile
 " http://www.shallowsky.com/linux/noaltscreen.html
 set t_ti= t_te=
 
-" set t_Co=256
-" set background=light
-" colorscheme solarized
-
 au BufRead,BufNewFile *.md set filetype=markdown
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'sql', 'ruby']
 
