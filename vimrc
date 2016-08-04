@@ -164,4 +164,4 @@ nmap <Leader>vs vip<Leader>vs<CR>
 nmap <Leader>vo :call VimuxOpenRunner()<CR>
 
 " Have `cpp` work for scheme like in fireplace.vim, except via vimux
-autocmd BufNewFile,BufRead *.scm nmap cpp vaf<Leader>vs<CR>
+autocmd BufNewFile,BufRead *.scm nmap cpp vaf<Leader>vs<CR>(
