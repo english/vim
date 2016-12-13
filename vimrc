@@ -7,6 +7,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'benmills/vimux'
 Plugin 'dbext.vim'
 Plugin 'elixir-lang/vim-elixir'
@@ -75,6 +76,12 @@ set splitbelow
 set splitright
 set hlsearch
 set hidden
+
+set background=light
+let g:solarized_visibility="high"
+let g:solarized_contrast="high"
+let g:solarized_termcolors=16
+colorscheme solarized
 
 " tabs
 set shiftwidth=2
