@@ -135,9 +135,6 @@ let g:rspec_command = "Dispatch rspec {spec}"
 let g:vimrubocop_keymap = 0
 nmap <Leader>rc :RuboCop --auto-correct<CR>
 
-" connect to figwheel browser repl
-command! Figwheel :Piggieback (do (require 'figwheel-sidecar.repl-api) (figwheel-sidecar.repl-api/cljs-repl))
-
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
