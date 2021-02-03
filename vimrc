@@ -1,4 +1,4 @@
-let mapleader = ","
+let mapleader = " "
 
 set nocompatible
 filetype off
@@ -19,7 +19,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'kana/vim-textobj-user', { 'for': 'ruby' }
 Plug 'kassio/neoterm'
 Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
@@ -105,7 +105,7 @@ if !has('nvim')
   set macligatures
 endif
 
-set guifont=Fira\ Code:h12
+" set guifont=Fira\ Code:h12
 
 autocmd FileType gitcommit setlocal spell
 autocmd FileType markdown setlocal spell
@@ -179,71 +179,71 @@ let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'test']
 
 " stolen from https://github.com/snoe/dotfiles/blob/master/home/.vimrc
 " COC
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+" let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+" let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <leader>u <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
-command! -nargs=0 Format :call CocAction('format')
+" " Remap keys for gotos
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <leader>u <Plug>(coc-references)
+" nmap <leader>rn <Plug>(coc-rename)
+" command! -nargs=0 Format :call CocAction('format')
 
-let g:coc_enable_locationlist = 0
-autocmd User CocLocationsChange CocList --normal location
+" let g:coc_enable_locationlist = 0
+" autocmd User CocLocationsChange CocList --normal location
 
-inoremap <silent><expr> <c-space> coc#refresh()
-nmap <silent> [l <Plug>(coc-diagnostic-prev)
-nmap <silent> ]l <Plug>(coc-diagnostic-next)
-nmap <silent> [k :CocPrev<cr>
-nmap <silent> ]k :CocNext<cr>
+" inoremap <silent><expr> <c-space> coc#refresh()
+" nmap <silent> [l <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]l <Plug>(coc-diagnostic-next)
+" nmap <silent> [k :CocPrev<cr>
+" nmap <silent> ]k :CocNext<cr>
 " nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+" function! s:show_documentation()
+"   if &filetype == 'vim'
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
 
-function! Expand(exp) abort
-    let l:result = expand(a:exp)
-    return l:result ==# '' ? '' : "file://" . l:result
-endfunction
+" function! Expand(exp) abort
+"     let l:result = expand(a:exp)
+"     return l:result ==# '' ? '' : "file://" . l:result
+" endfunction
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-vmap <leader>f <Plug>(coc-format-selected)
-nmap <leader>f <Plug>(coc-format-selected)
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+" vmap <leader>f <Plug>(coc-format-selected)
+" nmap <leader>f <Plug>(coc-format-selected)
 
-nnoremap <silent> crcc :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'cycle-coll', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> crth :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-first', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> crtt :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-last', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> crtf :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-first-all', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> crtl :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-last-all', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> cruw :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'unwind-thread', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> crua :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'unwind-all', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> crml :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'move-to-let', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1, input('Binding name: ')]})<CR>
-nnoremap <silent> cril :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'introduce-let', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1, input('Binding name: ')]})<CR>
-nnoremap <silent> crel :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'expand-let', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> cram :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'add-missing-libspec', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> crcn :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'clean-ns', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
-nnoremap <silent> cref :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'extract-function', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1, input('Function name: ')]})<CR>
+" nnoremap <silent> crcc :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'cycle-coll', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+" nnoremap <silent> crth :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-first', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+" nnoremap <silent> crtt :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-last', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+" nnoremap <silent> crtf :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-first-all', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+" nnoremap <silent> crtl :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'thread-last-all', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+" nnoremap <silent> cruw :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'unwind-thread', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+" nnoremap <silent> crua :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'unwind-all', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+" nnoremap <silent> crml :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'move-to-let', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1, input('Binding name: ')]})<CR>
+" nnoremap <silent> cril :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'introduce-let', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1, input('Binding name: ')]})<CR>
+" nnoremap <silent> crel :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'expand-let', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+" nnoremap <silent> cram :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'add-missing-libspec', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+" nnoremap <silent> crcn :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'clean-ns', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1]})<CR>
+" nnoremap <silent> cref :call CocRequest('clojure-lsp', 'workspace/executeCommand', {'command': 'extract-function', 'arguments': [Expand('%:p'), line('.') - 1, col('.') - 1, input('Function name: ')]})<CR>
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-vmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+" " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+" vmap <leader>a  <Plug>(coc-codeaction-selected)
+" nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+" " Remap for do codeAction of current line
+" nmap <leader>ac  <Plug>(coc-codeaction)
+" " Fix autofix problem of current line
+" nmap <leader>qf  <Plug>(coc-fix-current)
 
-autocmd BufReadCmd,FileReadCmd,SourceCmd jar:file://* call s:LoadClojureContent(expand("<amatch>"))
-function! s:LoadClojureContent(uri)
-  setfiletype clojure
-  let content = CocRequest('clojure-lsp', 'clojure/dependencyContents', {'uri': a:uri})
-  call setline(1, split(content, "\n"))
-  setl nomodified
-  setl readonly
-endfunction
+" autocmd BufReadCmd,FileReadCmd,SourceCmd jar:file://* call s:LoadClojureContent(expand("<amatch>"))
+" function! s:LoadClojureContent(uri)
+"   setfiletype clojure
+"   let content = CocRequest('clojure-lsp', 'clojure/dependencyContents', {'uri': a:uri})
+"   call setline(1, split(content, "\n"))
+"   setl nomodified
+"   setl readonly
+" endfunction
